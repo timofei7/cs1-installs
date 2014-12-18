@@ -5,6 +5,16 @@ function error {
   exit 1;
 }
 
+function move() {
+  suffix=0
+  file="$2/$1"
+  while test -e "$file"; do
+    file="$2/$1.$((++suffix))"
+  done
+  mv "$1" "$file"
+}
+
+
 
 OSXVERSION=`sw_vers -productVersion | cut -f1,2 -d.`
 
@@ -29,9 +39,9 @@ echo "checking xcode agreement"
 sudo xcodebuild -license
 
 echo "backing up possibly conflicting libraries in /opt/local,/usr/local, and /sw"
-sudo mv /opt/local /opt/local.before_CS1 2>&1 | grep -v "No such"
-sudo mv /usr/local /usr/local.before_CS1 2>&1 | grep -v "No such"
-sudo mv /sw /sw.before_CS1 2>&1 | grep -v "No such"
+sudo move /opt/local /opt/local.before_CS1 2>&1 | grep -v "No such"
+sudo move /usr/local /usr/local.before_CS1 2>&1 | grep -v "No such"
+sudo move /sw /sw.before_CS1 2>&1 | grep -v "No such"
 
 echo "installing homebrew from http://mxcl.github.com/homebrew/"
 echo "it is an open source package manager, very cool"
@@ -67,7 +77,7 @@ PATH=/usr/local/bin:/usr/local/share/python:$PATH
 export PATH
 echo 'export PATH=/usr/local/bin:/usr/local/share/python:$PATH' >> ~/.profile
 
-echo "installing pyside dependency"
-/usr/local/bin/pip -q install pyside || error "installing pyside"
+#echo "installing pyside dependency, this will take a long time"
+#/usr/local/bin/pip -q install pyside || error "installing pyside"
 
 echo "you are all set to go!"
