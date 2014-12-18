@@ -74,7 +74,7 @@ brew install cmake || error "installing cmake"
 
 
 echo "setting paths"
-PATH=/usr/local/bin:/usr/local/share/python:$PATH
+PATH=/usr/local/bin:$PATH
 export PATH
 grep '/usr/local/bin' ~/.profile 2>&1 > /dev/null || echo 'export PATH=/usr/local/bin:/usr/local/share/python:$PATH' >> ~/.profile
 
