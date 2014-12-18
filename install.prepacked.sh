@@ -7,9 +7,9 @@ function error {
 
 function move() {
   suffix=0
-  file="$2/$1"
+  file="$1"
   while test -e "$file"; do
-    file="$2/$1.$((++suffix))"
+    file="$1.$((++suffix))"
   done
   echo mv\'ing "$1" "$file"
   sudo mv "$1" "$file"
