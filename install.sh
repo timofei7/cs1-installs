@@ -39,6 +39,7 @@ sudo xcrun echo xcode checks out
 echo "backing up possibly conflicting libraries in /opt/local,/usr/local, and /sw"
 move /opt/local /opt/local.before_CS1 2>&1 | grep -v "No such"
 move /usr/local /usr/local.before_CS1 2>&1 | grep -v "No such"
+move /opt/homebrew-cask /opt/homebrew-cask.before_CS1 2>&1 | grep -v "No such"
 move /sw /sw.before_CS1 2>&1 | grep -v "No such"
 
 echo "installing homebrew from http://mxcl.github.com/homebrew/"
@@ -73,7 +74,12 @@ brew install cmake || error "installing cmake"
 echo "setting paths"
 PATH=/usr/local/bin:$PATH
 export PATH
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 grep -q '/usr/local/bin' ~/.profile 2>&1 > /dev/null || echo 'export PATH=/usr/local/bin:$PATH' >> ~/.profile
+grep -q 'CASK' ~/.profile 2>&1 > /dev/null || echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/.profile
+
+echo "attempting to install eclipse for convenience"
+brew install Caskroom/cask/eclipse-java
 
 #echo "installing pyside dependency, this will take a long time"
 #/usr/local/bin/pip -q install pyside || error "installing pyside"
