@@ -5,7 +5,7 @@ function error {
   exit 1;
 }
 
-echo "this will install homebrew and opencv"
+echo "this will install homebrew and various cs1 dependencies"
 echo "you will see lots of stuff happening but most of it is safe to ignore"
 echo "it may take a little while..."
 echo ""

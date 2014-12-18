@@ -8,7 +8,7 @@ function error {
 
 OSXVERSION=`sw_vers -productVersion | cut -f1,2 -d.`
 
-echo "this will install homebrew and opencv"
+echo "this will install homebrew and various cs1 dependencies"
 echo "you will see lots of stuff happening but most of it is safe to ignore"
 echo "it may take a little while..."
 echo ""
@@ -32,7 +32,7 @@ sudo mv /sw /sw.before_CS1 2>&1 | grep -v "No such"
 
 echo "installing homebrew from http://mxcl.github.com/homebrew/"
 echo "it is an open source package manager, very cool"
-ruby <(curl -fsSkL raw.github.com/mxcl/homebrew/go) || error "installing homebrew"
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" || error "installing homebrew"
 
 DOCTOR=`brew doctor`
 
