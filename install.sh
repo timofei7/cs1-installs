@@ -63,6 +63,6 @@ export PATH
 echo 'export PATH=/usr/local/bin:/usr/local/share/python:$PATH' >> ~/.profile
 
 echo "installing pyside dependency"
-/usr/local/share/python/pip -q install pyside || error "installing pyside"
+/usr/local/bin/pip -q install pyside || error "installing pyside"
 
 echo "you are all set to go!"
