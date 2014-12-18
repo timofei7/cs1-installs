@@ -79,7 +79,7 @@ grep -q '/usr/local/bin' ~/.profile 2>&1 > /dev/null || echo 'export PATH=/usr/l
 grep -q 'CASK' ~/.profile 2>&1 > /dev/null || echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/.profile
 
 echo "attempting to install eclipse for convenience"
-brew install Caskroom/cask/eclipse-java
+brew install Caskroom/cask/eclipse-ide
 
 #echo "installing pyside dependency, this will take a long time"
 #/usr/local/bin/pip -q install pyside || error "installing pyside"

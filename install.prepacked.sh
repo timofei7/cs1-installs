@@ -80,6 +80,6 @@ if [[ "$UPDATE" == *rror* ]]; then
 fi
 
 echo "attempting to install eclipse for convenience"
-brew install Caskroom/cask/eclipse-java
+brew install Caskroom/cask/eclipse-ide
 
 echo "you are all set to go!"
