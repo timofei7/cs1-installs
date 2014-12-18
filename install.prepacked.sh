@@ -3,14 +3,14 @@
 function error {
   echo "Error occured in $1, please email your TAs with copy/pasted error messages"
   exit 1;
-}  
+}
 
 echo "this will install homebrew and opencv"
 echo "you will see lots of stuff happening but most of it is safe to ignore"
 echo "it may take a little while..."
 echo ""
 echo "authenticating, you may need to enter your system password"
-sudo -v 
+sudo -v
 
 if [[ -e /usr/bin/gcc && ! -e /Applications/Xcode.app && ! -e /Developer ]]; then
   echo "detected commandline tools only must enable"
@@ -23,18 +23,18 @@ else
 fi
 
 echo "backing up possibly conflicting libraries in /opt/local,/usr/local, and /sw"
-sudo mv /opt/local /opt/local.before_CS10 2>&1 | grep -v "No such"
-sudo mv /usr/local /usr/local.before_CS10 2>&1 | grep -v "No such"
-sudo mv /sw /sw.before_CS10 2>&1 | grep -v "No such"
+sudo mv /opt/local /opt/local.before_CS1 2>&1 | grep -v "No such"
+sudo mv /usr/local /usr/local.before_CS1 2>&1 | grep -v "No such"
+sudo mv /sw /sw.before_CS1 2>&1 | grep -v "No such"
 
 echo "installing a prebuilt version of homebrew (http://mxcl.github.com/homebrew/)"
 echo "it is an open source package manager, very cool"
 
 cd /usr/
 OSXVERSION=`sw_vers -productVersion | cut -f1,2 -d.`
-PREPACKAGE=http://www.cs.dartmouth.edu/\~tim/cs10/"$OSXVERSION"_usr.local.tar.gz
+PREPACKAGE=http://www.cs.dartmouth.edu/\~tim/cs1/"$OSXVERSION"_usr.local.tar.gz
 echo "downloading and untarring prepacked stuffs from: $PREPACKAGE "
-curl $PREPACKAGE | sudo tar -C /usr -zxf - 
+curl $PREPACKAGE | sudo tar -C /usr -zxf -
 
 echo "setting paths"
 PATH=/usr/local/bin:/usr/local/share/python:$PATH
