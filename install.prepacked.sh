@@ -15,6 +15,12 @@ function move() {
   sudo mv "$1" "$file"
 }
 
+OSXVERSION=`sw_vers -productVersion | cut -f1,2 -d.`
+if [[ $OSXVERSION != "10.10" && $OSXVERSION != "10.9" ]]; then
+  echo "running on unsupported version of OS X, only 10.9 and 10.10 are supported"
+  exit -1
+fi
+
 
 echo "this will install homebrew and various cs1 dependencies"
 echo "you will see lots of stuff happening but most of it is safe to ignore"
@@ -45,7 +51,6 @@ echo "installing a prebuilt version of homebrew (http://mxcl.github.com/homebrew
 echo "it is an open source package manager, very cool"
 
 cd /usr/
-OSXVERSION=`sw_vers -productVersion | cut -f1,2 -d.`
 PREPACKAGE=http://www.cs.dartmouth.edu/\~tim/cs1/"$OSXVERSION"_usr.local.tar.gz
 echo "downloading and untarring prepacked stuffs from: $PREPACKAGE "
 curl $PREPACKAGE | sudo tar -C /usr -zxf -
@@ -53,7 +58,7 @@ curl $PREPACKAGE | sudo tar -C /usr -zxf -
 echo "setting paths"
 PATH=/usr/local/bin:$PATH
 export PATH
-grep '/usr/local/bin' ~/.profile 2>&1 > /dev/null || echo 'export PATH=/usr/local/bin:/usr/local/share/python:$PATH' >> ~/.profile
+grep -q '/usr/local/bin' ~/.profile 2>&1 > /dev/null || echo 'export PATH=/usr/local/bin:$PATH' >> ~/.profile
 
 echo "testing install"
 DOCTOR=`brew doctor`

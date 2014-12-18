@@ -76,7 +76,7 @@ brew install cmake || error "installing cmake"
 echo "setting paths"
 PATH=/usr/local/bin:$PATH
 export PATH
-grep '/usr/local/bin' ~/.profile 2>&1 > /dev/null || echo 'export PATH=/usr/local/bin:/usr/local/share/python:$PATH' >> ~/.profile
+grep -q '/usr/local/bin' ~/.profile 2>&1 > /dev/null || echo 'export PATH=/usr/local/bin:$PATH' >> ~/.profile
 
 #echo "installing pyside dependency, this will take a long time"
 #/usr/local/bin/pip -q install pyside || error "installing pyside"
