@@ -57,6 +57,11 @@ brew install qt || error "installing qt"
 echo "installing pyqt"
 brew install pyqt || error "installing pyqt"
 
+# this is for pyside
+echo "installing cmake"
+brew install cmake || error "installing cmake"
+
+
 echo "setting paths"
 PATH=/usr/local/bin:/usr/local/share/python:$PATH
 export PATH
