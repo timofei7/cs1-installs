@@ -55,8 +55,8 @@ if [[ "$DOCTOR" != *ready\ to\ brew* ]]; then
   exit 1;
 fi
 
-echo "reauthenticating if necessary"
-sudo -v
+# echo "reauthenticating if necessary"
+# sudo -v
 
 echo "installing python dependency"
 brew install python || error "installing python"
@@ -75,7 +75,7 @@ brew install cmake || error "installing cmake"
 echo "setting paths"
 PATH=/usr/local/bin:/usr/local/share/python:$PATH
 export PATH
-echo 'export PATH=/usr/local/bin:/usr/local/share/python:$PATH' >> ~/.profile
+grep '/usr/local/bin' ~/.profile 2>&1 > /dev/null || echo 'export PATH=/usr/local/bin:/usr/local/share/python:$PATH' >> ~/.profile
 
 #echo "installing pyside dependency, this will take a long time"
 #/usr/local/bin/pip -q install pyside || error "installing pyside"

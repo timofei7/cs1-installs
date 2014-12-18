@@ -52,7 +52,7 @@ curl $PREPACKAGE | sudo tar -C /usr -zxf -
 echo "setting paths"
 PATH=/usr/local/bin:/usr/local/share/python:$PATH
 export PATH
-echo 'export PATH=/usr/local/bin:/usr/local/share/python:$PATH' >> ~/.profile
+grep '/usr/local/bin' ~/.profile 2>&1 > /dev/null || echo 'export PATH=/usr/local/bin:/usr/local/share/python:$PATH' >> ~/.profile
 
 echo "testing install"
 DOCTOR=`brew doctor`
