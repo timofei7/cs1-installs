@@ -47,7 +47,7 @@ echo 'export PATH=/usr/local/bin:/usr/local/share/python:$PATH' >> ~/.profile
 echo "testing install"
 DOCTOR=`brew doctor`
 
-if [[ "$DOCTOR" != *raring\ to\ brew* && "$DOCTOR" != *Homebrew\ is\ outdated* ]]; then
+if [[ "$DOCTOR" != *ready\ to\ brew* && "$DOCTOR" != *Homebrew\ is\ outdated* ]]; then
   echo "sorry! something went wrong. please copy paste any error messages and email your TAs"
   echo "error: $DOCTOR"
   exit 1;

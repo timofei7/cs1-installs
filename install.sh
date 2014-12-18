@@ -37,9 +37,9 @@ echo "installing homebrew from http://mxcl.github.com/homebrew/"
 echo "it is an open source package manager, very cool"
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" || error "installing homebrew"
 
+echo "testing install"
 DOCTOR=`brew doctor`
-
-if [[ "$DOCTOR" != *raring\ to\ brew* ]]; then
+if [[ "$DOCTOR" != *ready\ to\ brew* ]]; then
   echo "sorry! something went wrong. please copy paste any error messages and email your TAs"
   echo "error: $DOCTOR"
   exit 1;
