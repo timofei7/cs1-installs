@@ -1,4 +1,4 @@
-# CS10 OS X Software Installs#
+# CS1 OS X Software Installs#
 
 
 
@@ -7,7 +7,7 @@
 
 ##1) Install Developer Tools + Command Line Tools:##
 
-###on Lion (10.7.x) or MountainLion (10.8.x):###
+###on 10.9.x and 10.10.x: ###
 
 
 
