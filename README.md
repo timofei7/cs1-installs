@@ -46,12 +46,18 @@ I have a script that will attempt to install everything for you.  There are two 
 3. Run: `/usr/local/bin/pip -q install pyside`
 
 
-<!--##3) Configure eclipse project##
+##3) Configure PyCharm##
 
-2. Download [JavaCV](http://javacv.googlecode.com/files/javacv-0.2-bin.zip), unzip, put it into some folder that you can remember.
-3. Start eclipse and open your java project
-4. Navigate to Project > Properties > Java Build Path > Libraries and click "Add External JARs...".
-4. Locate the JAR files, select them, and click OK.-->
+1. Launch /Applications/PyCharm CE.app (should already be installed via the automatic)
+2. Accept defaults on startup
+![image](https://raw.github.com/timofei7/cs1-installs/master/images/pycharm-import.png)
+3. Click configure
+![image](https://raw.github.com/timofei7/cs1-installs/master/images/pycharm-configure.png)
+4. Click preferences
+![image](https://raw.github.com/timofei7/cs1-installs/master/images/pycharm-preferences.png)
+5. Choose the python interpreter to be: /usr/local/bin/python (in the dropdown)
+![image](https://raw.github.com/timofei7/cs1-installs/master/images/pycharm-interpreter.png)
+
 
 <br>
 <hr>
