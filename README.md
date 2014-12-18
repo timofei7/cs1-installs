@@ -14,7 +14,7 @@
 1. Download and install Xcode via the App Store: [xcode](http://itunes.apple.com/us/app/xcode)
 2. Open the Xcode app (/Applications/Xcode.app)
 3. Make sure Command Line Tools are installed:
-   open /Applications/Terminal.app and run:  `xcode-select --install` like so
+   open /Applications/Terminal.app and run:  `xcode-select --install` like so <br>
 ![image](https://raw.github.com/timofei7/cs1-installs/master/images/xcode-select.png)
 <!--5. Download and install [Xquartz](http://xquartz.macosforge.org/)-->
 
@@ -51,13 +51,13 @@ I have a script that will attempt to install everything for you.  There are two 
 ##3) Configure PyCharm##
 
 1. Launch /Applications/PyCharm CE.app (should already be installed via the automatic)
-2. Accept defaults on startup
+2. Accept defaults on startup <br>
 ![image](https://raw.github.com/timofei7/cs1-installs/master/images/pycharm-import.png)
-3. Click configure
+3. Click configure <br>
 ![image](https://raw.github.com/timofei7/cs1-installs/master/images/pycharm-configure.png)
-4. Click preferences
+4. Click preferences <br>
 ![image](https://raw.github.com/timofei7/cs1-installs/master/images/pycharm-preferences.png)
-5. Choose the python interpreter to be: /usr/local/bin/python (in the dropdown)
+5. Choose the python interpreter to be: /usr/local/bin/python (in the dropdown) <br>
 ![image](https://raw.github.com/timofei7/cs1-installs/master/images/pycharm-interpreter.png)
 
 
