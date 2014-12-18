@@ -5,6 +5,16 @@ function error {
   exit 1;
 }
 
+function move() {
+  suffix=0
+  file="$2/$1"
+  while test -e "$file"; do
+    file="$2/$1.$((++suffix))"
+  done
+  sudo mv "$1" "$file"
+}
+
+
 echo "this will install homebrew and various cs1 dependencies"
 echo "you will see lots of stuff happening but most of it is safe to ignore"
 echo "it may take a little while..."
@@ -26,9 +36,9 @@ echo "checking xcode agreement"
 sudo xcodebuild -license
 
 echo "backing up possibly conflicting libraries in /opt/local,/usr/local, and /sw"
-sudo mv /opt/local /opt/local.before_CS1 2>&1 | grep -v "No such"
-sudo mv /usr/local /usr/local.before_CS1 2>&1 | grep -v "No such"
-sudo mv /sw /sw.before_CS1 2>&1 | grep -v "No such"
+move /opt/local /opt/local.before_CS1 2>&1 | grep -v "No such"
+move /usr/local /usr/local.before_CS1 2>&1 | grep -v "No such"
+move /sw /sw.before_CS1 2>&1 | grep -v "No such"
 
 echo "installing a prebuilt version of homebrew (http://mxcl.github.com/homebrew/)"
 echo "it is an open source package manager, very cool"

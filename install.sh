@@ -11,7 +11,7 @@ function move() {
   while test -e "$file"; do
     file="$2/$1.$((++suffix))"
   done
-  mv "$1" "$file"
+  sudo mv "$1" "$file"
 }
 
 
@@ -39,9 +39,9 @@ echo "checking xcode agreement"
 sudo xcodebuild -license
 
 echo "backing up possibly conflicting libraries in /opt/local,/usr/local, and /sw"
-sudo move /opt/local /opt/local.before_CS1 2>&1 | grep -v "No such"
-sudo move /usr/local /usr/local.before_CS1 2>&1 | grep -v "No such"
-sudo move /sw /sw.before_CS1 2>&1 | grep -v "No such"
+move /opt/local /opt/local.before_CS1 2>&1 | grep -v "No such"
+move /usr/local /usr/local.before_CS1 2>&1 | grep -v "No such"
+move /sw /sw.before_CS1 2>&1 | grep -v "No such"
 
 echo "installing homebrew from http://mxcl.github.com/homebrew/"
 echo "it is an open source package manager, very cool"
