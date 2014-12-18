@@ -11,7 +11,6 @@ function move() {
   while test -e "$file"; do
     file="$2.$((suffix++))"
   done
-  echo mv\'ing "$1" "$file"
   sudo mv "$1" "$file"
 }
 
@@ -40,7 +39,7 @@ else
 fi
 
 echo "checking xcode agreement"
-sudo xcodebuild -license
+sudo xcrun echo xcode checks out
 
 echo "backing up possibly conflicting libraries in /opt/local,/usr/local, and /sw"
 move /opt/local /opt/local.before_CS1 2>&1 | grep -v "No such"
