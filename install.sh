@@ -25,6 +25,9 @@ else
   echo "xcode detected"
 fi
 
+echo "checking xcode agreement"
+sudo xcodebuild -license
+
 echo "backing up possibly conflicting libraries in /opt/local,/usr/local, and /sw"
 sudo mv /opt/local /opt/local.before_CS1 2>&1 | grep -v "No such"
 sudo mv /usr/local /usr/local.before_CS1 2>&1 | grep -v "No such"
