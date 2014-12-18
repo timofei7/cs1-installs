@@ -42,8 +42,10 @@ I have a script that will attempt to install everything for you.  There are two 
 #####2) Install dependencies#####
 
 1. Run: `export PATH=/usr/local/bin:$PATH`
+2. Run: `echo 'export PATH=/usr/local/bin:$PATH' >> ~/.profile`
 2. Run: `brew install python cmake qt pyqt`
-3. Run: `/usr/local/bin/pip -q install pyside`
+3. Run: `/usr/local/bin/pip install pyside`
+4. Download  [PyCharm-CE](https://www.jetbrains.com/pycharm/download/)
 
 
 ##3) Configure PyCharm##
