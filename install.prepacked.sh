@@ -11,6 +11,7 @@ function move() {
   while test -e "$file"; do
     file="$2/$1.$((++suffix))"
   done
+  echo mv\'ing "$1" "$file"
   sudo mv "$1" "$file"
 }
 
