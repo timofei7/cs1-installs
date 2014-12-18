@@ -78,10 +78,10 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 grep -q '/usr/local/bin' ~/.profile 2>&1 > /dev/null || echo 'export PATH=/usr/local/bin:$PATH' >> ~/.profile
 grep -q 'CASK' ~/.profile 2>&1 > /dev/null || echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/.profile
 
-echo "attempting to install eclipse for convenience"
-brew install Caskroom/cask/eclipse-ide
-
 #echo "installing pyside dependency, this will take a long time"
 #/usr/local/bin/pip -q install pyside || error "installing pyside"
+
+echo "attempting to install pycharm-ce"
+brew install Caskroom/cask/pycharm-ce || error "installing pycharm-ce"
 
 echo "you are all set to go!"

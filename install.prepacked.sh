@@ -79,7 +79,7 @@ if [[ "$UPDATE" == *rror* ]]; then
   exit 1;
 fi
 
-echo "attempting to install eclipse for convenience"
-brew install Caskroom/cask/eclipse-ide
+echo "attempting to install pycharm-ce"
+brew install Caskroom/cask/pycharm-ce
 
 echo "you are all set to go!"
