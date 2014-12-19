@@ -66,14 +66,13 @@ brew install qt || error "installing qt"
 echo "installing pyqt"
 brew install pyqt || error "installing pyqt"
 
+# this is for pycharm
+echo "installing ruby"
+brew install ruby || error "installing ruby"
+
 # this is for pyside
 echo "installing cmake"
 brew install cmake || error "installing cmake"
-
-# this is for pycharm
-echo "installing ruby"
-brew install cmake || error "installing ruby"
-
 
 echo "setting paths"
 PATH=/usr/local/bin:$PATH
