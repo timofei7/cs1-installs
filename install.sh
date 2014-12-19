@@ -83,8 +83,10 @@ grep -q 'CASK' ~/.profile 2>&1 > /dev/null || echo 'export HOMEBREW_CASK_OPTS="-
 grep -q '/usr/local/bin' ~/.bashrc 2>&1 > /dev/null || echo 'export PATH=/usr/local/bin:$PATH' >> ~/.bashrc
 grep -q 'CASK' ~/.bashrc 2>&1 > /dev/null || echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/.bashrc
 
-echo "installing pyside dependency, this will take a long time"
-/usr/local/bin/pip -q install pyside || error "installing pyside"
+echo "installing pyside dependency, this may take some time"
+brew install pyside || error "installing pyside"
+brew link --overwrite pyside
+#/usr/local/bin/pip -q install pyside || error "installing pyside"
 
 echo "attempting to install pycharm-ce"
 brew install Caskroom/cask/pycharm-ce || error "installing pycharm-ce"
