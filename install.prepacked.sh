@@ -15,7 +15,7 @@ function move() {
 }
 
 OSXVERSION=`sw_vers -productVersion | cut -f1,2 -d.`
-if [[ $OSXVERSION != "10.10" && $OSXVERSION != "10.9" && $OSXVERSION != "10.8"]]; then
+if [[ $OSXVERSION != "10.10" && $OSXVERSION != "10.9" && $OSXVERSION != "10.8" ]]; then
   echo "running on unsupported version of OS X, only 10.8, 10.9, and 10.10 are supported"
   exit -1
 fi
