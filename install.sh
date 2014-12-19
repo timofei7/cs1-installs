@@ -70,6 +70,10 @@ brew install pyqt || error "installing pyqt"
 echo "installing cmake"
 brew install cmake || error "installing cmake"
 
+# this is for pycharm
+echo "installing ruby"
+brew install cmake || error "installing ruby"
+
 
 echo "setting paths"
 PATH=/usr/local/bin:$PATH
@@ -77,6 +81,8 @@ export PATH
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 grep -q '/usr/local/bin' ~/.profile 2>&1 > /dev/null || echo 'export PATH=/usr/local/bin:$PATH' >> ~/.profile
 grep -q 'CASK' ~/.profile 2>&1 > /dev/null || echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/.profile
+grep -q '/usr/local/bin' ~/.bashrc 2>&1 > /dev/null || echo 'export PATH=/usr/local/bin:$PATH' >> ~/.bashrc
+grep -q 'CASK' ~/.bashrc 2>&1 > /dev/null || echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/.bashrc
 
 #echo "installing pyside dependency, this will take a long time"
 #/usr/local/bin/pip -q install pyside || error "installing pyside"
