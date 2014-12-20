@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 function error {
   echo "Error occured in $1, please email your TAs with copy/pasted error messages"
   exit 1;
@@ -23,9 +24,6 @@ echo ""
 echo "authenticating, you may need to enter your system password"
 sudo -v
 
-# if [[ -e /usr/bin/gcc && ! -e /Applications/Xcode.app && ! -e /Developer ]]; then
-#   echo "detected commandline tools only must enable"
-#   sudo xcode-select -switch /usr/bin
 if [[ ! -e /usr/bin/gcc && ! -e /Applications/Xcode.app && ! -e /Developer ]]; then
   echo "no xcode detected please install Xcode first then rerun this"
   exit 1;
@@ -86,7 +84,6 @@ grep -q 'CASK' ~/.bashrc 2>&1 > /dev/null || echo 'export HOMEBREW_CASK_OPTS="--
 echo "installing pyside dependency, this may take some time"
 brew install pyside || error "installing pyside"
 brew link --overwrite pyside
-#/usr/local/bin/pip -q install pyside || error "installing pyside"
 
 echo "attempting to install pycharm-ce"
 brew install Caskroom/cask/pycharm-ce || error "installing pycharm-ce"
