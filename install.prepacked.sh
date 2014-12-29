@@ -66,7 +66,7 @@ grep -q '/usr/local/bin' ~/.bashrc 2>&1 > /dev/null || echo 'export PATH=/usr/lo
 grep -q 'CASK' ~/.bashrc 2>&1 > /dev/null || echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/.bashrc
 
 echo "updating packages if necessary..."
-UPDATE=`brew update; brew upgrade`
+UPDATE=`brew update -q; brew upgrade -q`
 if [[ "$UPDATE" == *rror* ]]; then
   echo "something went wrong during brew update, this is an optional step but if it worries you email your TAs with this error message"
   echo "error: $UPDATE"
