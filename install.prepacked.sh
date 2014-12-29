@@ -54,6 +54,7 @@ cd /usr/
 PREPACKAGE=http://www.cs.dartmouth.edu/\~tim/cs1/"$OSXVERSION"_usr.local.tar.gz
 echo "downloading and untarring prepacked stuffs from: $PREPACKAGE "
 curl $PREPACKAGE | sudo tar -C /usr -zxf -
+sudo chown -R $USER /usr/local
 
 echo "setting paths"
 PATH=/usr/local/bin:$PATH
@@ -64,22 +65,20 @@ grep -q 'CASK' ~/.profile 2>&1 > /dev/null || echo 'export HOMEBREW_CASK_OPTS="-
 grep -q '/usr/local/bin' ~/.bashrc 2>&1 > /dev/null || echo 'export PATH=/usr/local/bin:$PATH' >> ~/.bashrc
 grep -q 'CASK' ~/.bashrc 2>&1 > /dev/null || echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/.bashrc
 
+echo "updating packages if necessary..."
+UPDATE=`brew update; brew upgrade`
+if [[ "$UPDATE" == *rror* ]]; then
+  echo "something went wrong during brew update, this is an optional step but if it worries you email your TAs with this error message"
+  echo "error: $UPDATE"
+fi
 
 echo "testing install"
 DOCTOR=`brew doctor`
 
 if [[ "$DOCTOR" != *ready\ to\ brew* && "$DOCTOR" != *Homebrew\ is\ outdated* ]]; then
   echo "sorry! something went wrong. please copy paste any error messages and email your TAs"
+  echo "if these are warnings about other python versions you may continue and see if it works"
   echo "error: $DOCTOR"
-  exit 1;
-fi
-
-echo "updating packages if necessary..."
-UPDATE=`brew update; brew upgrade`
-if [[ "$UPDATE" == *rror* ]]; then
-  echo "something went wrong during brew update, this is an optional step but if it worries you email your TAs with this error message"
-  echo "error: $UPDATE"
-  exit 1;
 fi
 
 echo "attempting to install pycharm-ce"
