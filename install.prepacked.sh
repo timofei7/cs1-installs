@@ -1,5 +1,7 @@
 #!/bin/bash
 
+BACKUPDIR="/cs1backups"
+
 function error {
   echo "Error occured in $1, please email your TAs with copy/pasted error messages"
   exit 1;
@@ -15,8 +17,8 @@ function move() {
 }
 
 OSXVERSION=`sw_vers -productVersion | cut -f1,2 -d.`
-if [[ $OSXVERSION != "10.8" && $OSXVERSION != "10.9" && $OSXVERSION != "10.10" ]]; then
-  echo "running on unsupported version of OS X, only 10.8, 10.9, and 10.10 are supported"
+if [[ $OSXVERSION != "10.8" && $OSXVERSION != "10.9" && $OSXVERSION != "10.10" && $OSXVERSION != "10.11"]]; then
+  echo "running on unsupported version of OS X, only 10.8, 10.9, 10.10, 10.11 are supported"
   exit -1
 fi
 
@@ -42,10 +44,15 @@ echo "checking xcode agreement"
 sudo xcrun echo xcode checks out
 
 echo "backing up possibly conflicting libraries in /opt/local,/usr/local, and /sw"
-move /opt/local /opt/local.before_CS1 2>&1 | grep -v "No such"
-move /usr/local /usr/local.before_CS1 2>&1 | grep -v "No such"
-move /opt/homebrew-cask /opt/homebrew-cask.before_CS1 2>&1 | grep -v "No such"
-move /sw /sw.before_CS1 2>&1 | grep -v "No such"
+sudo mkdir $BACKUPDIR
+move /opt/local $BACKUPDIR/local.before_CS1 2>&1 | grep -v "No such"
+move /usr/local $BACKUPDIR/local.before_CS1 2>&1 | grep -v "No such"
+move /opt/homebrew-cask $BACKUPDIR/homebrew-cask.before_CS1 2>&1 | grep -v "No such"
+move /sw $BACKUPDIR/sw.before_CS1 2>&1 | grep -v "No such"
+
+echo "fixing /usr/local permissions"
+sudo mkdir /usr/local
+sudo chflags norestricted /usr/local && sudo chown -R $(whoami):admin /usr/local
 
 echo "installing a prebuilt version of homebrew (http://mxcl.github.com/homebrew/)"
 echo "it is an open source package manager, very cool"
@@ -65,23 +72,24 @@ grep -q 'CASK' ~/.profile 2>&1 > /dev/null || echo 'export HOMEBREW_CASK_OPTS="-
 grep -q '/usr/local/bin' ~/.bashrc 2>&1 > /dev/null || echo 'export PATH=/usr/local/bin:$PATH' >> ~/.bashrc
 grep -q 'CASK' ~/.bashrc 2>&1 > /dev/null || echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/.bashrc
 
-echo "updating packages if necessary..."
-UPDATE=`brew update -q; brew upgrade -q`
-if [[ "$UPDATE" == *rror* ]]; then
-  echo "something went wrong during brew update, this is an optional step but if it worries you email your TAs with this error message"
-  echo "error: $UPDATE"
-fi
+#echo "updating packages if necessary..."
+#UPDATE=`brew update -q; brew upgrade -q`
+#if [[ "$UPDATE" == *rror* ]]; then
+#  echo "something went wrong during brew update, this is an optional step but if it worries you email your TAs with this error message"
+#  echo "error: $UPDATE"
+#fi
 
-echo "testing install"
-DOCTOR=`brew doctor`
+#echo "testing install"
+#DOCTOR=`brew doctor`
 
-if [[ "$DOCTOR" != *ready\ to\ brew* && "$DOCTOR" != *Homebrew\ is\ outdated* ]]; then
-  echo "sorry! something went wrong. please copy paste any error messages and email your TAs"
-  echo "if these are warnings about other python versions you may continue and see if it works"
-  echo "error: $DOCTOR"
-fi
+#if [[ "$DOCTOR" != *ready\ to\ brew* && "$DOCTOR" != *Homebrew\ is\ outdated* ]]; then
+#  echo "sorry! something went wrong. please copy paste any error messages and email your TAs"
+#  echo "if these are warnings about other python versions you may continue and see if it works"
+#  echo "error: $DOCTOR"
+#fi
 
-echo "attempting to install pycharm-ce"
-brew install Caskroom/cask/pycharm-ce
+# this would automatically install pycharm-ce but looks like some people prefer the download way
+#echo "attempting to install pycharm-ce"
+#brew install Caskroom/cask/pycharm-ce
 
 echo "you are all set to go!"
