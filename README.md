@@ -7,7 +7,7 @@
 
 ##1) Install Developer Tools + Command Line Tools:##
 
-###on 10.8.x, 10.9.x, and 10.10.x: ###
+###on 10.8.x, 10.9.x, 10.10.x, and 10.11.x: ###
 
 
 
