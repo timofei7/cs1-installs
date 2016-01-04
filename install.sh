@@ -91,7 +91,7 @@ echo "installing pyside dependency, this may take some time"
 brew install pyside || error "installing pyside"
 brew link --overwrite pyside
 
-echo "attempting to install pycharm-ce"
-brew install Caskroom/cask/pycharm-ce || error "installing pycharm-ce"
+#echo "attempting to install pycharm-ce"
+#brew install Caskroom/cask/pycharm-ce || error "installing pycharm-ce"
 
 echo "you are all set to go!"
