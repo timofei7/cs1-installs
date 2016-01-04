@@ -1,5 +1,6 @@
 #!/bin/bash
 
+BACKUPDIR="/cs1backups"
 
 function error {
   echo "Error occured in $1, please email your TAs with copy/pasted error messages"
@@ -35,10 +36,15 @@ echo "checking xcode agreement"
 sudo xcrun echo xcode checks out
 
 echo "backing up possibly conflicting libraries in /opt/local,/usr/local, and /sw"
-move /opt/local /opt/local.before_CS1 2>&1 | grep -v "No such"
-move /usr/local /usr/local.before_CS1 2>&1 | grep -v "No such"
-move /opt/homebrew-cask /opt/homebrew-cask.before_CS1 2>&1 | grep -v "No such"
-move /sw /sw.before_CS1 2>&1 | grep -v "No such"
+sudo mkdir $BACKUPDIR
+move /opt/local $BACKUPDIR/local.before_CS1 2>&1 | grep -v "No such"
+move /usr/local $BACKUPDIR/local.before_CS1 2>&1 | grep -v "No such"
+move /opt/homebrew-cask $BACKUPDIR/homebrew-cask.before_CS1 2>&1 | grep -v "No such"
+move /sw $BACKUPDIR/sw.before_CS1 2>&1 | grep -v "No such"
+
+echo "fixing /usr/local permissions"
+sudo mkdir /usr/local
+sudo chflags norestricted /usr/local && sudo chown -R $(whoami):admin /usr/local
 
 echo "installing homebrew from http://mxcl.github.com/homebrew/"
 echo "it is an open source package manager, very cool"
